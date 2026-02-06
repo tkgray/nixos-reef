@@ -93,6 +93,9 @@
     };
   };
 
+  # kde connect
+  programs.kdeconnect.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -160,10 +163,14 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  #networking.firewall.allowedTCPPorts = [ ... ];
+  #networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.firewall = {
+    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+    allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
