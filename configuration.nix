@@ -148,6 +148,10 @@
     htop
     btop
     vlc
+    flatpak
+    kubectl
+    kubernetes-helm
+    discord
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -164,11 +168,11 @@
   # services.openssh.enable = true;
   
   # flakpak 
-  systemd.services.flatpak-repo = {
-    wantedBy = ["multi-user.target"];
-    path = [pkgs.flatpak];
-    script = "flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo";
-  };
+  services.flatpak.enable = true;
+  # add flathub
+  system.activationScripts.flathub-setup = ''
+    ${pkgs.flatpak}/bin/flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo || true
+  '';
 
   # Open ports in the firewall.
   #networking.firewall.allowedTCPPorts = [ ... ];
