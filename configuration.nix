@@ -75,6 +75,10 @@
   # Enable IIO sensors
   hardware.sensor.iio.enable = true;
 
+  # Fingerprint reader
+  services.fprintd.enable = true;
+  security.pam.services.login.fprintAuth = true; 
+
   # reef bluetoodh 
   hardware.bluetooth = {
     enable = true;
@@ -154,6 +158,7 @@
     discord
     kitty
     noson
+    usbutils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -167,7 +172,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
   
   # flakpak 
   services.flatpak.enable = true;
@@ -184,6 +189,7 @@
   networking.firewall = {
     allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
     allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+    allowedUDPPorts = [ 1400 1900 ];
   };
 
   # This value determines the NixOS release from which the default
